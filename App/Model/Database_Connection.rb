@@ -20,4 +20,8 @@ class DatabaseConnection
   def self.insert(table, column_names, values, return_values)
     @connection.exec("INSERT INTO #{table} (#{column_names}) VALUES (#{values}) RETURNING #{return_values};")
   end
+
+  def self.all(table)
+    @connection.exec("SELECT * FROM #{table}")
+  end
 end
