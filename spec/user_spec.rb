@@ -1,6 +1,6 @@
 require 'pg'
 require './App/Model/User.rb'
-require './App/Model/Database.rb'
+require './App/Model/Database_Connection.rb'
 
 describe User do
   before(:each) do
