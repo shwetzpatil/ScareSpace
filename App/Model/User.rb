@@ -10,9 +10,11 @@ class User
   end
 
   def self.create(email:, password:)
-    encrypted_password = BCrypt::Password.create(password)
+    return if duplicate_email?(email)
 
+    encrypted_password = BCrypt::Password.create(password)
     connection = PG.connect(dbname: 'scarespace')
+
     result = connection.exec("INSERT INTO users (email, password) VALUES ('#{email}', '#{encrypted_password}') RETURNING id, email;")
 
     User.new(id: result[0]['id'], email: result[0]['email'])
@@ -36,5 +38,13 @@ class User
     return unless BCrypt::Password.new(result[0]['password']) == password
 
     User.new(id: result[0]['id'], email: result[0]['email'])
+  end
+
+  private
+
+  def self.duplicate_email?(email)
+    connection = PG.connect(dbname: 'scarespace')
+    email = connection.exec("SELECT email FROM users WHERE email = '#{email}';")
+    email.any?
   end
 end

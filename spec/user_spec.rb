@@ -24,6 +24,15 @@ describe User do
 
       User.create(email: 'test@example.com', password: 'password123')
     end
+
+    it 'returns nil when given a duplicate email' do
+      User.create(email: 'test@example.com', password: 'password123')
+
+      duplicate_user = User.create(email: 'test@example.com', password: 'password1234')
+
+      expect(duplicate_user).not_to be_a User
+      expect(duplicate_user).to be_nil
+    end
   end
 
   describe '.find' do
