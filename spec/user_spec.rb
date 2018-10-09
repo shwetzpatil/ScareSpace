@@ -1,10 +1,11 @@
-require './App/Model/User.rb'
 require 'pg'
+require './App/Model/User.rb'
+require './App/Model/Database_Connection.rb'
 
 describe User do
   before(:each) do
-    connection = PG.connect(dbname: 'scarespace')
-    connection.exec 'TRUNCATE users, spaces, availability'
+    connection = DatabaseConnection.setup
+    connection.query('TRUNCATE users, spaces, availability;')
   end
 
   describe '.create' do
@@ -17,9 +18,6 @@ describe User do
     end
 
     it('hashes the password using BCrypt') do
-      connection = PG.connect(dbname: 'scarespace')
-      connection.exec 'TRUNCATE users, spaces, availability'
-
       expect(BCrypt::Password).to receive(:create).with('password123')
 
       User.create(email: 'test@example.com', password: 'password123')
