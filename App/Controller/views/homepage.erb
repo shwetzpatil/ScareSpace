@@ -6,6 +6,9 @@
   </head>
   <body> -->
     <h1>Welcome to ScareSpace</h1>
+    <% if @user %>
+    User: <%= @user.email %>
+    <% end %>
   <form action="/signup" method="get">
     <input type="submit" value="Sign Up">
   </form>

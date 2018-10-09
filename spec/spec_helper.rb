@@ -18,6 +18,7 @@ require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'rspec'
+require File.join(File.dirname(__FILE__), '..', '/App/Model/User.rb')
 # ENV['RACK_ENV'] = 'test'
 require File.join(File.dirname(__FILE__), '..', '/App/Controller/app.rb')
 Capybara.app = ScareSpace

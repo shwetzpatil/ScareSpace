@@ -1,4 +1,6 @@
 require 'sinatra/base'
+require './App/Model/User.rb'
+require './App/Model/Database_Connection.rb'
 
 
 class ScareSpace < Sinatra::Base
@@ -7,14 +9,20 @@ class ScareSpace < Sinatra::Base
   get '/' do
     redirect('/homepage')
   end
-  
+
   get '/homepage' do
+    @user = User.find(id: session[:user_id])
     erb :homepage
-    # "Welcome to ScareSpace"
   end
 
   get '/signup' do
     erb :signup
+  end
+
+  post '/signup' do
+    user = User.create(email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    redirect '/homepage'
   end
 
   get '/spaces' do
@@ -33,10 +41,6 @@ class ScareSpace < Sinatra::Base
     session.clear
     redirect('/homepage')
   end
-
-
-
-
 
   run! if app_file == $0
 end
