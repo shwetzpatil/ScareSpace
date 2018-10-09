@@ -1,13 +1,4 @@
-require 'pg'
-require './App/Model/User.rb'
-require './App/Model/Database_Connection.rb'
-
 describe User do
-  before(:each) do
-    connection = DatabaseConnection.setup
-    connection.query('TRUNCATE users, spaces, availability;')
-  end
-
   describe '.create' do
     it 'creates a new user' do
       new_user = User.create(email: 'test@example.com', password: 'password123')
