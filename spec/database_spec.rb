@@ -44,4 +44,8 @@ describe DatabaseConnection do
       DatabaseConnection.all("spaces")
     end
   end
+
+  describe '.join' do
+
+  end
 end

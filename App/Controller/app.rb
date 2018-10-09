@@ -20,6 +20,20 @@ class ScareSpace < Sinatra::Base
     erb :signup
   end
 
+  get '/spaces' do
+    # implement users
+    erb :spaces
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  get '/requests' do
+    # Implement users
+    erb :requests
+  end
+
   post '/signup' do
     user = User.create(email: params[:email], password: params[:password])
     if user
@@ -31,14 +45,6 @@ class ScareSpace < Sinatra::Base
     end
   end
 
-  get '/spaces' do
-    erb :spaces
-  end
-
-  get '/login' do
-    erb :login
-  end
-
   post '/login' do
     user = User.authenticate(email: params[:email], password: params[:password])
     if user
@@ -48,10 +54,6 @@ class ScareSpace < Sinatra::Base
       flash[:notice] = 'Incorrect email or password'
       redirect('/login')
     end
-  end
-
-  get '/requests' do
-    erb :requests
   end
 
   post '/logout' do
