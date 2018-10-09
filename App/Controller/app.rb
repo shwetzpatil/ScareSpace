@@ -3,6 +3,11 @@ require 'sinatra/base'
 
 class ScareSpace < Sinatra::Base
   enable :sessions
+
+  get '/' do
+    redirect('/homepage')
+  end
+  
   get '/homepage' do
     erb :homepage
     # "Welcome to ScareSpace"
@@ -23,11 +28,14 @@ class ScareSpace < Sinatra::Base
   get '/requests' do
     erb :requests
   end
-  
 
-  get '/' do
-    "ScareSpace"
+  post '/logout' do
+    session.clear
+    redirect('/homepage')
   end
+
+
+
 
 
   run! if app_file == $0
