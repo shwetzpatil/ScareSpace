@@ -12,7 +12,7 @@ gem 'rubocop'
 gem 'sinatra'
 gem 'sinatra-flash'
 
-gem :test do 
+gem :test do
   gem 'capybara'
   gem 'rspec'
   gem 'simplecov', require: false
