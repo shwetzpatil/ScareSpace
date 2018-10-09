@@ -5,14 +5,19 @@
     <title>Sign Up</title>
   </head>
   <body>
-    <form action="/homepage" method="get">
+   <% require 'sinatra/flash' %>
+
+    <h2>
+      <%= flash[:notice] %>
+    </h2>
+    <form action="/signup" method="post">
       <label for="email">
         Enter email
-        <input type="text" name="email">
+        <input type="email" name="email">
       </label>
       <label for="password">
         Enter password
-        <input type="text" name="password">
+        <input type="password" name="password">
       </label>
       <input type="submit" value="Sign Up">
     </form>
