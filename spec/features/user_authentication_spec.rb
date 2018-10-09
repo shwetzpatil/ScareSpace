@@ -17,7 +17,7 @@ feature 'authentication' do
     expect(page).to have_content('Incorrect email or password')
   end
 
-  xscenario 'a user sees an error if the given password is wrong' do
+  scenario 'a user sees an error if the given password is wrong' do
     visit '/login'
     fill_in('email', with: 'test@example.com')
     fill_in('password', with:'wrongpassword123')
@@ -26,7 +26,7 @@ feature 'authentication' do
     expect(page).to have_content('Incorrect email or password')
   end
 
-  xscenario 'a user can sign out' do
+  scenario 'a user can sign out' do
     visit '/homepage'
     visit '/login'
     fill_in('email', with: 'test@example.com')

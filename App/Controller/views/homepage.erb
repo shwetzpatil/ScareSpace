@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <title>ScareSpace</title>
   </head>
-  <body> -->
+  <body>
+    <% require 'sinatra/flash' %>
+
+<h2>
+  <%= flash[:notice] %>
+</h2>
     <h1>Welcome to ScareSpace</h1>
     <% if @user %>
     User: <%= @user.email %>

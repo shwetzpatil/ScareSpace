@@ -51,6 +51,7 @@ class ScareSpace < Sinatra::Base
 
   post '/logout' do
     session.clear
+    flash[:notice] = 'You have logged out'
     redirect('/homepage')
   end
 
