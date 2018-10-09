@@ -33,6 +33,12 @@ class ScareSpace < Sinatra::Base
     erb :login
   end
 
+  post '/login' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    session[:user_id] = user.id
+    redirect '/homepage'
+  end
+
   get '/requests' do
     erb :requests
   end
