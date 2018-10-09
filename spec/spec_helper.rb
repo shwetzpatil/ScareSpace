@@ -6,6 +6,7 @@ require 'rspec'
 require File.join(File.dirname(__FILE__), '..', '/App/Model/User.rb')
 require File.join(File.dirname(__FILE__), '..', '/App/Model/Database_Connection.rb')
 require File.join(File.dirname(__FILE__), '..', '/App/Controller/app.rb')
+require File.join(File.dirname(__FILE__), '..', '/App/Model/Space.rb')
 require 'features/features_helper'
 
 Capybara.app = ScareSpace

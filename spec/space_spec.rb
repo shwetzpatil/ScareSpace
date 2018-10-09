@@ -1,12 +1,7 @@
-require 'pg'
-require './App/Model/Space.rb'
-require './App/Model/Database_Connection.rb'
+
+
 
 describe Space do
-  before(:each) do
-    @connection = DatabaseConnection.setup
-    @connection.query('TRUNCATE users, spaces, availability;')
-  end
 
   describe '.create' do
     it 'should create a new space and add it to the database' do
