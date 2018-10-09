@@ -22,12 +22,12 @@ class ScareSpace < Sinatra::Base
 
   post '/signup' do
     user = User.create(email: params[:email], password: params[:password])
-    if !user
-      flash[:notice] = 'Email already in use, please use another email'
-      redirect '/signup'
-    else
+    if user
       session[:user_id] = user.id
       redirect '/homepage'
+    else
+      flash[:notice] = 'Email already in use, please use another email'
+      redirect '/signup'
     end
   end
 

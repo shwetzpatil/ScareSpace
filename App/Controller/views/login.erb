@@ -5,11 +5,11 @@
     <title>Log in</title>
   </head>
   <body>
-  <% require 'sinatra/flash' %>
+    <% require 'sinatra/flash' %>
 
-<h2>
-  <%= flash[:notice] %>
-</h2>
+    <h2>
+      <%= flash[:notice] %>
+    </h2>
     <h1> Log In page </h1>
     <form action="/login" method="post">
       <label for="email">
