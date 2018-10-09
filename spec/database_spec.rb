@@ -36,4 +36,12 @@ describe DatabaseConnection do
       DatabaseConnection.insert("users", "email, password", "'test@example.com', 'test'", "id, email")
     end
   end
+
+  describe '.all' do
+    it 'selects all data from the table' do
+      expect(@connection).to receive(:exec).with("SELECT * FROM spaces")
+
+      DatabaseConnection.all("spaces")
+    end
+  end
 end
