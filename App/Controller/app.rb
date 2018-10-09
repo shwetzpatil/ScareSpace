@@ -1,10 +1,11 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './App/Model/User.rb'
 require './App/Model/Database_Connection.rb'
 
-
 class ScareSpace < Sinatra::Base
-  enable :sessions
+  enable :sessions, :method_override
+  register Sinatra::Flash
 
   get '/' do
     redirect('/homepage')
@@ -35,8 +36,13 @@ class ScareSpace < Sinatra::Base
 
   post '/login' do
     user = User.authenticate(email: params[:email], password: params[:password])
-    session[:user_id] = user.id
-    redirect '/homepage'
+    if user
+      session[:user_id] = user.id
+      redirect '/homepage'
+    else
+      flash[:notice] = 'Incorrect email or password'
+      redirect('/login')
+    end
   end
 
   get '/requests' do

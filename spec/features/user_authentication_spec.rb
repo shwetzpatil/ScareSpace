@@ -8,7 +8,7 @@ feature 'authentication' do
     expect(page).to have_content('User: test@example.com')
   end
 
-  xscenario 'a user sees an error if the given email is wrong' do
+  scenario 'a user sees an error if the given email is wrong' do
     visit '/login'
     fill_in('email', with: 'fail@fake.com')
     fill_in('password', with:'password123')
