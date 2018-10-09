@@ -11,7 +11,7 @@ feature 'authentication' do
   scenario 'a user sees an error if the given email is wrong' do
     visit '/login'
     fill_in('email', with: 'fail@fake.com')
-    fill_in('password', with:'password123')
+    fill_in('password', with: 'password123')
     click_button('Log In')
     expect(page).not_to have_content('User: fail@fake.com')
     expect(page).to have_content('Incorrect email or password')
@@ -20,7 +20,7 @@ feature 'authentication' do
   scenario 'a user sees an error if the given password is wrong' do
     visit '/login'
     fill_in('email', with: 'test@example.com')
-    fill_in('password', with:'wrongpassword123')
+    fill_in('password', with: 'wrongpassword123')
     click_button('Log In')
     expect(page).not_to have_content('User: test@example.com')
     expect(page).to have_content('Incorrect email or password')
@@ -30,7 +30,7 @@ feature 'authentication' do
     visit '/homepage'
     visit '/login'
     fill_in('email', with: 'test@example.com')
-    fill_in('password', with:'password123')
+    fill_in('password', with: 'password123')
     click_button('Log In')
     click_button('Log Out')
     expect(page).not_to have_content('User: test@example.com')

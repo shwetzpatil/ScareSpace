@@ -5,6 +5,11 @@
     <title>Sign Up</title>
   </head>
   <body>
+   <% require 'sinatra/flash' %>
+
+<h2>
+  <%= flash[:notice] %>
+</h2>
     <form action="/signup" method="post">
       <label for="email">
         Enter email
