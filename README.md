@@ -35,6 +35,8 @@ https://github.com/shwetzpatil
 https://github.com/TinyGobby
 https://github.com/victorjefferies/
 
+## Working notes
+### Database setup:
 ```
 psql
 CREATE DATABASE scarespace;
@@ -42,4 +44,25 @@ CREATE DATABASE scarespace;
 CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(60) UNIQUE, password VARCHAR(140));
 CREATE TABLE spaces (id SERIAL PRIMARY KEY, name VARCHAR(60), address VARCHAR(150), price DECIMAL(5,2), description VARCHAR(500), lister_id INTEGER REFERENCES users (id));
 CREATE TABLE availability (id SERIAL PRIMARY KEY, date DATE, space_id INTEGER REFERENCES spaces (id), booker_id INTEGER REFERENCES users (id));
+```
+
+### To Create A New Branch
+```
+git checkout -b your_branch_name
+```
+
+### To Load Into A Branch
+```
+git checkout your_branch_name
+git pull origin your_branch_name
+```
+
+### To Merge:
+```
+(in your_branch_name)
+git checkout origin
+git merge --no-ff your_branch_name
+:wq
+git push origin HEAD:master
+git checkout master
 ```
