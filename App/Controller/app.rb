@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './App/Model/User.rb'
+require './App/Model/Space.rb'
 require './App/Model/Database_Connection.rb'
 require 'date'
 
@@ -25,8 +26,19 @@ class ScareSpace < Sinatra::Base
 
   get '/spaces' do
     @user = User.find(id: session[:user_id])
+
     erb :spaces
   end
+
+  post '/spaces' do 
+    @user = User.find(id: session[:user_id])
+    space = Space.create(name: params[:name_of_space], address: params[:address_of_space], price: params[:price_of_space], description: params[:description_of_space], lister_id: @user.id)
+    if space
+      flash[:notice] = 'You have created a space'
+      redirect '/spaces'
+    end
+
+  end 
 
   get '/login' do
     erb :login
