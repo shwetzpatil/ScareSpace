@@ -36,5 +36,5 @@ class Space
   def self.update(id, options)
     DatabaseConnection.query("UPDATE spaces SET name = '#{options[:name]}' WHERE id = '#{id}'")
   end
-
+  # hello
 end
