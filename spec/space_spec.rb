@@ -6,7 +6,7 @@ describe Space do
 
   describe '.all' do
     it 'should display all spaces' do
-      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      new_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       spaces = Space.all
 
       names = spaces.map(&:name)
@@ -20,7 +20,7 @@ describe Space do
   # on create expect address to be unique
   describe '.create' do
     it 'should create a new space and add it to the database' do
-      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      new_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       expect(new_space.name).to eq 'robbiespace'
       expect(new_space).to respond_to :id
     end
@@ -28,7 +28,7 @@ describe Space do
 
   describe '.update' do
     it 'should enable a user to update the name of their space' do
-      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      new_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       Space.update(new_space.id, name: 'robbiescaryspace')
       space_list = Space.all
       names = space_list.map(&:name)
@@ -39,7 +39,7 @@ describe Space do
 
   describe '.find' do
     it 'finds a space' do
-      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      new_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       expected_space = Space.find(new_space.id)
 
       expect(expected_space.name).to eq"robbiespace"
@@ -50,7 +50,7 @@ describe Space do
   
   describe '.delete' do
     it 'should delete a space from the database based on name and user id' do
-      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      new_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       Space.delete(new_space.id)
       spaces = Space.all
       name = spaces.map(&:name)
