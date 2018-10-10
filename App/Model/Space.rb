@@ -16,7 +16,7 @@ class Space
 
   def self.all
     result = DatabaseConnection.all("spaces")
-    result.map { |row| row['name']}
+    result.map { |row| Space.new(id: row['id'], name: row['name'], address: row['address'], price: row['price'], description: row['description'], lister_id: row['lister_id']) }
   end
 
   def self.create(id:, name:, address:, price:, description:, lister_id:)
@@ -33,13 +33,8 @@ class Space
     DatabaseConnection.query("DELETE FROM spaces WHERE id = #{id}")
   end
 
-  # def self.update(id, options)
-  #   DatabaseConnection.query("UPDATE spaces SET name = '#{options[:name]}' WHERE id = '#{id}'")
-  # end
-
-  def self.update(id, name)
-    DatabaseConnection.query("UPDATE spaces SET name = '#{name}' WHERE id = '#{id}'")
+  def self.update(id, options)
+    DatabaseConnection.query("UPDATE spaces SET name = '#{options[:name]}' WHERE id = '#{id}'")
   end
-
 
 end
