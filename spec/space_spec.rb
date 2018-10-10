@@ -1,13 +1,10 @@
-
-
-
 describe Space do
 
   before(:each) do
     @new_user = User.create(email: 'test@example.com', password: 'password123')
   end
-
-  describe '.create' do
+  # on create expect address to be unique
+  describe '.create' do 
     it 'should create a new space and add it to the database' do
       new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
       expect(new_space.name).to eq 'robbiespace'
@@ -17,6 +14,14 @@ describe Space do
   describe '.update' do
   end
   describe '.find' do
+    it 'finds a space' do
+      new_space = Space.create(id: 1, name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: @new_user.id)
+      expected_space = Space.find(new_space.id)
+
+      expect(expected_space.name).to eq"robbiespace"
+      expect(expected_space.price).to eq "100.00" 
+
+    end
   end
   describe '.all' do
     it 'should display all spaces' do
