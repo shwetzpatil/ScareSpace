@@ -23,4 +23,8 @@ class Space
     result = DatabaseConnection.insert("spaces", "id, name, address, price, description, lister_id", "'#{id}', '#{name}', '#{address}','#{price}', '#{description}', '#{lister_id}'", "id, name, address, price, description, lister_id")
     Space.new(id: result[0]['id'], name: result[0]['name'], address: result[0]['address'], price: result[0]['price'], description: result[0]['description'], lister_id: result[0]['lister_id'])
   end
+
+  def self.delete(id)
+    DatabaseConnection.query("DELETE FROM spaces WHERE id = #{id}")
+  end
 end
