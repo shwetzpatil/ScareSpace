@@ -14,23 +14,30 @@
     <% if @user %>
     User: <%= @user.email %>
     <% end %>
-  <form action="/signup" method="get">
-    <input type="submit" value="Sign Up">
-  </form>
-    <form action="/login" method="get">
-    <input type="submit" value="Log In">
-  </form>
-    <form action="/spaces" method="get">
-    <input type="submit" value="Create new space">
-  </form>
-    <form action="/requests" method="get">
-    <input type="submit" value="Request Update">
-  </form>
-    <form action="/logout" method="post">
-    <input type="submit" value="Log Out">
-  </form>
+    <% if !@user %>
+      <form action="/signup" method="get">
+        <input type="submit" value="Sign Up">
+      </form>
+      <form action="/login" method="get">
+        <input type="submit" value="Log In">
+      </form>
+    <% end %>
+    <% if @user %>
+      <form action="/spaces" method="get">
+        <input type="submit" value="Create new space">
+      </form>
+    <% end %>
+    <% if @user %>
+      <form action="/requests" method="get">
+        <input type="submit" value="Request Update">
+      </form>
+      <form action="/logout" method="post">
+        <input type="submit" value="Log Out">
+      </form>
+    <% end %>
+
     <form action="/signup" method="get">
-    <input type="submit" value="BOOKBTN">
-  </form>
- </body>
+      <input type="submit" value="BOOKBTN">
+    </form>
+  </body>
 </html>
