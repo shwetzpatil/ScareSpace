@@ -43,7 +43,7 @@ CREATE DATABASE scarespace;
 \c scarespace
 CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(60) UNIQUE, password VARCHAR(140));
 CREATE TABLE spaces (id SERIAL PRIMARY KEY, name VARCHAR(60), address VARCHAR(150), price DECIMAL(5,2), description VARCHAR(500), lister_id INTEGER REFERENCES users (id));
-CREATE TABLE availability (id SERIAL PRIMARY KEY, date DATE, space_id INTEGER REFERENCES spaces (id), booker_id INTEGER REFERENCES users (id));
+CREATE TABLE availability (id SERIAL PRIMARY KEY, date INTEGER, space_id INTEGER REFERENCES spaces (id), booker_id INTEGER REFERENCES users (id), lister_id INTEGER REFERENCES users (id));
 ```
 
 ### To Create A New Branch

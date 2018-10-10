@@ -44,4 +44,12 @@ describe DatabaseConnection do
       DatabaseConnection.all("spaces")
     end
   end
+
+  describe '.listed_spaces' do
+    it 'selects all spaces with availabilities listed' do
+      user = User.create(email: 'test@example.com', password: 'password123')
+      result = DatabaseConnection.insert('spaces', 'name, address, price, description, lister_id', "'patricks', 'teststreet', '100.00', 'test', '#{user.id}'", 'id, name, address, price, description, lister_id')
+
+    end
+  end
 end

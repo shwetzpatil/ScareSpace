@@ -2,10 +2,13 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './App/Model/User.rb'
 require './App/Model/Database_Connection.rb'
+require 'date'
 
 class ScareSpace < Sinatra::Base
   enable :sessions, :method_override
   register Sinatra::Flash
+
+  DatabaseConnection.setup
 
   get '/' do
     redirect('/homepage')
@@ -20,6 +23,20 @@ class ScareSpace < Sinatra::Base
     erb :signup
   end
 
+  get '/spaces' do
+    @user = User.find(id: session[:user_id])
+    erb :spaces
+  end
+
+  get '/login' do
+    erb :login
+  end
+
+  get '/requests' do
+    @user = User.find(id: session[:user_id])
+    erb :requests
+  end
+
   post '/signup' do
     user = User.create(email: params[:email], password: params[:password])
     if user
@@ -31,14 +48,6 @@ class ScareSpace < Sinatra::Base
     end
   end
 
-  get '/spaces' do
-    erb :spaces
-  end
-
-  get '/login' do
-    erb :login
-  end
-
   post '/login' do
     user = User.authenticate(email: params[:email], password: params[:password])
     if user
@@ -48,10 +57,6 @@ class ScareSpace < Sinatra::Base
       flash[:notice] = 'Incorrect email or password'
       redirect('/login')
     end
-  end
-
-  get '/requests' do
-    erb :requests
   end
 
   post '/logout' do
