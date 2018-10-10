@@ -12,6 +12,6 @@ class Availability
   def self.list(date)
     result = DatabaseConnection.list(date)
 
-    Availability.new(id: result[0]['id'], space_id: result[0]['space_id'], booker_id: result[0]['booker_id'], lister_id: result[0]['lister_id'], date: result[0]['date'])
+    result.map { |row| Availability.new(id: row['id'], space_id: row['space_id'], booker_id: row['booker_id'], lister_id: row['lister_id'], date: row['date']) }
   end
 end
