@@ -1,6 +1,3 @@
-require './App/Model/Database_Connection.rb'
-require './App/Model/Availability.rb'
-
 describe DatabaseConnection do
   before(:each) {@connection = DatabaseConnection.setup}
   describe '.setup' do
@@ -48,7 +45,7 @@ describe DatabaseConnection do
 
   describe '.listed_spaces' do
     it 'selects all spaces with availabilities listed' do
-      expect(@connection).to receive(:exec).with("SELECT * FROM availability WHERE date = 31 AND lister_id = booker_id;")
+      expect(@connection).to receive(:exec).with("SELECT * FROM availability WHERE date = 31;")
       DatabaseConnection.list(31)
     end
   end

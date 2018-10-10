@@ -54,7 +54,7 @@ describe Space do
   describe '.list' do
     it 'should list the space as available on a date' do
       Space.list(@new_space.id, @new_user.id, 31)
-      result = Availability.list(31).first
+      result = Requests.list_available(31).first
       expect(result.space_id).to eq @new_space.id
     end
   end
