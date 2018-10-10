@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './App/Model/User.rb'
 require './App/Model/Database_Connection.rb'
+require 'date'
 
 class ScareSpace < Sinatra::Base
   enable :sessions, :method_override

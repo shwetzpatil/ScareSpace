@@ -9,7 +9,6 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem 'bcrypt'
 gem 'pg'
 gem 'rubocop'
-gem 'simple_calendar'
 gem 'sinatra'
 gem 'sinatra-flash'
 
