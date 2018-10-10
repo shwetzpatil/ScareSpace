@@ -62,7 +62,13 @@ git pull origin your_branch_name
 (in your_branch_name)
 git checkout origin
 git merge --no-ff your_branch_name
+```
+Press `esc`
+```
 :wq
+```
+```
 git push origin HEAD:master
 git checkout master
+git pull
 ```
