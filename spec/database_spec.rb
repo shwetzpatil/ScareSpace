@@ -1,4 +1,5 @@
 require './App/Model/Database_Connection.rb'
+require './App/Model/Availability.rb'
 
 describe DatabaseConnection do
   before(:each) {@connection = DatabaseConnection.setup}
@@ -47,9 +48,8 @@ describe DatabaseConnection do
 
   describe '.listed_spaces' do
     it 'selects all spaces with availabilities listed' do
-      user = User.create(email: 'test@example.com', password: 'password123')
-      result = DatabaseConnection.insert('spaces', 'name, address, price, description, lister_id', "'patricks', 'teststreet', '100.00', 'test', '#{user.id}'", 'id, name, address, price, description, lister_id')
-
+      expect(@connection).to receive(:exec).with("SELECT * FROM availability WHERE date = 31 AND lister_id = booker_id;")
+      DatabaseConnection.list(31)
     end
   end
 end
