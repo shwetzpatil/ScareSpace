@@ -40,10 +40,9 @@ describe Space do
       expected_space = Space.find(@new_space.id)
       expect(expected_space.name).to eq"robbiespace"
       expect(expected_space.price).to eq "100.00"
-
     end
   end
-  
+
   describe '.delete' do
     it 'should delete a space from the database based on name and user id' do
       Space.delete(@new_space.id)
@@ -53,6 +52,10 @@ describe Space do
     end
   end
   describe '.list' do
-    # MEETING FIRST
+    it 'should list the space as available on a date' do
+      Space.list(@new_space.id, @new_user.id, 31)
+      result = Availability.list(31).first
+      expect(result.space_id).to eq @new_space.id
+    end
   end
 end

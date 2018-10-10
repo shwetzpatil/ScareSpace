@@ -36,5 +36,9 @@ class Space
   def self.update(id, options)
     DatabaseConnection.query("UPDATE spaces SET name = '#{options[:name]}' WHERE id = '#{id}'")
   end
+
+  def self.list(space_id, user_id, date)
+    DatabaseConnection.insert('availability', 'date, space_id, booker_id, lister_id', "#{date}, '#{space_id}', '#{user_id}', '#{user_id}'", '*' )
+  end
   # hello
 end

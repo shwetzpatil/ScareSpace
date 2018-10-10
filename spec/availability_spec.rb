@@ -4,7 +4,7 @@ describe Availability do
   it 'selects an available space' do
     lister = User.create(email: 'testtwo@example.com', password: 'password123')
     booker = User.create(email: 'test@example.com', password: 'password123')
-    space = Space.create(id: '200', name: 'patricks', address: 'tester street', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
+    space = Space.create(name: 'patricks', address: 'tester street', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
     DatabaseConnection.insert('availability', 'date, space_id, booker_id, lister_id', "31, '#{space.id}', '#{lister.id}', '#{lister.id}'", '*' )
     result = Availability.list(31).first
     expect(result.space_id).to eq(space.id)
@@ -14,10 +14,10 @@ describe Availability do
   it 'selects all spaces with availabilities listed' do
     lister = User.create(email: 'testtwo@example.com', password: 'password123')
     booker = User.create(email: 'test@example.com', password: 'password123')
-    space = Space.create(id: '200', name: 'patricks', address: 'tester street', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
-    space2 = Space.create(id: '300', name: 'patricks2', address: 'tester street2', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
-    DatabaseConnection.insert('availability', 'date, space_id, booker_id, lister_id', "31, '#{space.id}', '#{lister.id}', '#{lister.id}'", '*' )
-    DatabaseConnection.insert('availability', 'date, space_id, booker_id, lister_id', "31, '#{space2.id}', '#{lister.id}', '#{lister.id}'", '*' )
+    space = Space.create(name: 'patricks', address: 'tester street', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
+    space2 = Space.create(name: 'patricks2', address: 'tester street2', price: '100.00', description: 'hole', lister_id: "#{lister.id}")
+    Space.list(space.id, lister.id, 31)
+    Space.list(space2.id, lister.id, 31)
     result = Availability.list(31)
     expect(result[0].space_id).to eq(space.id)
     expect(result[0].lister_id).to eq(lister.id)
