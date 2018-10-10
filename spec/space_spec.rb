@@ -24,6 +24,7 @@ describe Space do
     end
   end
   describe '.delete' do
+    #do this next
   end
   describe '.list' do
     # MEETING FIRST
