@@ -6,6 +6,9 @@
   </head>
   <body>
     <h1> Create a space </h1>
+    <% if @user %>
+    User: <%= @user.email %>
+    <% end %>
     <form action="/homepage" method="get">
       <label for="name_of_space">
         Space name

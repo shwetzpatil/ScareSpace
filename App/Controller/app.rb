@@ -7,6 +7,8 @@ class ScareSpace < Sinatra::Base
   enable :sessions, :method_override
   register Sinatra::Flash
 
+  DatabaseConnection.setup
+
   get '/' do
     redirect('/homepage')
   end
@@ -21,7 +23,7 @@ class ScareSpace < Sinatra::Base
   end
 
   get '/spaces' do
-    # implement users
+    @user = User.find(id: session[:user_id])
     erb :spaces
   end
 
@@ -30,7 +32,7 @@ class ScareSpace < Sinatra::Base
   end
 
   get '/requests' do
-    # Implement users
+    @user = User.find(id: session[:user_id])
     erb :requests
   end
 
