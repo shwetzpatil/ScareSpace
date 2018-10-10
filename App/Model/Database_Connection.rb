@@ -1,4 +1,5 @@
 require 'pg'
+require_relative 'Availability'
 
 class DatabaseConnection
   def self.setup
@@ -23,5 +24,9 @@ class DatabaseConnection
 
   def self.all(table)
     @connection.exec("SELECT * FROM #{table}")
+  end
+
+  def self.list(date)
+    @connection.exec("SELECT * FROM availability WHERE date = #{date} AND lister_id = booker_id;")
   end
 end
