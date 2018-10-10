@@ -33,5 +33,13 @@ class Space
     DatabaseConnection.query("DELETE FROM spaces WHERE id = #{id}")
   end
 
-  
+  # def self.update(id, options)
+  #   DatabaseConnection.query("UPDATE spaces SET name = '#{options[:name]}' WHERE id = '#{id}'")
+  # end
+
+  def self.update(id, name)
+    DatabaseConnection.query("UPDATE spaces SET name = '#{name}' WHERE id = '#{id}'")
+  end
+
+
 end
