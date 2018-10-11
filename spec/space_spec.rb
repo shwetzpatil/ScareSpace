@@ -51,11 +51,21 @@ describe Space do
       expect(name).not_to include("robbiespace")
     end
   end
+
   describe '.list' do
     it 'should list the space as available on a date' do
       Space.list(@new_space.id, @new_user.id, 31)
       result = Requests.list_available(31).first
       expect(result.space_id).to eq @new_space.id
+    end
+  end
+
+  describe '.mine' do
+    it 'should return the spaces belonging to the user' do
+      other_user = User.create(email: 'test2@example.com', password: 'password123')
+      other_space = Space.create(name: 'robbiespace', address: 'xyz', price: '100', description: 'abc', lister_id: other_user.id)
+      result = Space.mine(@new_user.id).first
+      expect(result.id).to eq @new_space.id
     end
   end
 end
