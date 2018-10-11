@@ -25,10 +25,6 @@ User Stories
     * As a listing user, to stop others staying in the space, I would like to be able to deny the request
 * They request to book a space
     * As a booking user, to allow me to stay in a space, I would like to be able to make a booking request.
-* Their request to book a space is confirmed
-    * As a booking user, to allow me to get happy, I would like to receive confirmation when my booking request is agreed.
-* Their request to book a space is denied
-    *  As a booking user, to allow me to get angry, I would like to receive confirmation when my booking request is denied.
 
 https://github.com/racldn
 https://github.com/shwetzpatil

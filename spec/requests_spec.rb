@@ -64,6 +64,7 @@ describe Requests do
       Requests.book(@space.id, @requester.id, 31)
       Requests.decline(@space.id, @requester.id, 31)
       result = Requests.list_available(31).first
+      expect(result.requester_id).not_to eq(@requester.id)
       expect(result.booker_id).not_to eq(@requester.id)
     end
   end

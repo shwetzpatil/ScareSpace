@@ -30,7 +30,7 @@ class Requests
   end
 
   def self.decline(space_id, requester_id, date)
-    DatabaseConnection.query("UPDATE availability SET requester_id = '#{requester_id}' WHERE space_id = '#{space_id}' AND date = '#{date}';")
+    DatabaseConnection.query("UPDATE availability SET requester_id = null WHERE space_id = '#{space_id}' AND date = '#{date}';")
 
   end
 end
