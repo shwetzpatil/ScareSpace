@@ -45,6 +45,11 @@ class ScareSpace < Sinatra::Base
     erb :login
   end
 
+  post '/send_request' do
+    flash[:notice] = 'Your request is sent'
+    redirect '/homepage'
+  end
+
   get '/requests' do
     @user = User.find(id: session[:user_id])
     erb :requests

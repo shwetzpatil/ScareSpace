@@ -36,18 +36,29 @@
       </form>
     <% end %>
 
-    <form action="/signup" method="get">
-      <input type="submit" value="BOOKBTN">
-    </form>
     <div id="space_list">
   
       <% @spaces_list.map do |space|%>
       <ul id="<%= space.id %>">
 
-        <li> <%= space.name %></li>
-        <li> <%= space.address%>
-        <li> <%= space.price %>
-        <li> <%= space.description%> </li>
+        <li>Space name: <%= space.name %></li>
+        <li>Address: <%= space.address%>
+        <li>Price: <%= space.price %>
+        <li>Description: <%= space.description%> </li>
+      
+        <% if @user %>
+        <form action="/send_request" method="post">
+          <input type="submit" value="Book">
+        </form>
+
+        <% else %>
+        <form action="/signup" method="get">
+          <input type="submit" value="Book">
+        </form>
+
+
+        <% end %>
+
       </ul>
        
       <% end %>
