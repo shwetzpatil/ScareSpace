@@ -5,11 +5,16 @@
     <title>Create a space</title>
   </head>
   <body>
+  <% require 'sinatra/flash' %>
+
+    <h2>
+      <%= flash[:notice] %>
+    </h2>
     <h1> Create a space </h1>
     <% if @user %>
     User: <%= @user.email %>
     <% end %>
-    <form action="/homepage" method="get">
+    <form action="/spaces" method="post">
       <label for="name_of_space">
         Space name
         <input type="text" name="name_of_space">
@@ -24,9 +29,18 @@
       </label>
       <label for="description_of_space">
         Description
-        <input type="text" name="address_of_space">
+        <input type="text" name="description_of_space">
       </label>
       <input type="submit" value="Create space">
+    </form>
+    <form action="/homepage" method="get">
+      <input type="submit" value="Back to homepage">
+    </form>
+    <form action="/spaces" method="post">
+      <input type="submit" value="Delete space">
+    </form>
+    <form action="/spaces" method="post">
+      <input type="submit" value="Update">
     </form>
   </body>
 </html>

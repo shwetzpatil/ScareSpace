@@ -14,23 +14,55 @@
     <% if @user %>
     User: <%= @user.email %>
     <% end %>
-  <form action="/signup" method="get">
-    <input type="submit" value="Sign Up">
-  </form>
-    <form action="/login" method="get">
-    <input type="submit" value="Log In">
-  </form>
-    <form action="/spaces" method="get">
-    <input type="submit" value="Create new space">
-  </form>
-    <form action="/requests" method="get">
-    <input type="submit" value="Request Update">
-  </form>
-    <form action="/logout" method="post">
-    <input type="submit" value="Log Out">
-  </form>
-    <form action="/signup" method="get">
-    <input type="submit" value="BOOKBTN">
-  </form>
- </body>
+    <% if !@user %>
+      <form action="/signup" method="get">
+        <input type="submit" value="Sign Up">
+      </form>
+      <form action="/login" method="get">
+        <input type="submit" value="Log In">
+      </form>
+    <% end %>
+    <% if @user %>
+      <form action="/spaces" method="get">
+        <input type="submit" value="Create new space">
+      </form>
+    <% end %>
+    <% if @user %>
+      <form action="/requests" method="get">
+        <input type="submit" value="Request Update">
+      </form>
+      <form action="/logout" method="post">
+        <input type="submit" value="Log Out">
+      </form>
+    <% end %>
+
+    <div id="space_list">
+  
+      <% @spaces_list.map do |space|%>
+      <ul id="<%= space.id %>">
+
+        <li>Space name: <%= space.name %></li>
+        <li>Address: <%= space.address%>
+        <li>Price: <%= space.price %>
+        <li>Description: <%= space.description%> </li>
+      
+        <% if @user %>
+        <form action="/send_request" method="post">
+          <input type="submit" value="Book">
+        </form>
+
+        <% else %>
+        <form action="/signup" method="get">
+          <input type="submit" value="Book">
+        </form>
+
+
+        <% end %>
+
+      </ul>
+       
+      <% end %>
+  
+    </div>
+  </body>
 </html>
