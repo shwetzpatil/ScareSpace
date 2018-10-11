@@ -39,5 +39,19 @@
     <form action="/signup" method="get">
       <input type="submit" value="BOOKBTN">
     </form>
+    <div id="space_list">
+  
+      <% @spaces_list.map do |space|%>
+      <ul id="<%= space.id %>">
+
+        <li> <%= space.name %></li>
+        <li> <%= space.address%>
+        <li> <%= space.price %>
+        <li> <%= space.description%> </li>
+      </ul>
+       
+      <% end %>
+  
+    </div>
   </body>
 </html>

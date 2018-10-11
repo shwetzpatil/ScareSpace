@@ -17,6 +17,7 @@ class ScareSpace < Sinatra::Base
 
   get '/homepage' do
     @user = User.find(id: session[:user_id])
+    @spaces_list = Space.all
     erb :homepage
   end
 
