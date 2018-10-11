@@ -40,5 +40,10 @@ class Space
   def self.list(space_id, user_id, date)
     DatabaseConnection.insert('availability', 'date, space_id, booker_id, lister_id', "#{date}, '#{space_id}', '#{user_id}', '#{user_id}'", '*' )
   end
+
+  def self.mine(user_id)
+    result = DatabaseConnection.select('*', 'spaces', 'lister_id', user_id)
+    result.map { |row| Space.new(id: row['id'], name: row['name'], address: row['address'], price: row['price'], description: row['description'], lister_id: row['lister_id']) }
+  end
   # hello
 end
