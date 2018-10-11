@@ -41,11 +41,20 @@ class ScareSpace < Sinatra::Base
 
   end 
 
+  post '/listed_spaces' do
+    @user = User.find(id: session[:user_id])
+    date = params[:date]
+    @spaces_list = Requests.list_available(date)
+    p date
+    redirect '/homepage'
+  end 
+
   get '/login' do
     erb :login
   end
 
   post '/send_request' do
+    
     flash[:notice] = 'Your request is sent'
     redirect '/homepage'
   end

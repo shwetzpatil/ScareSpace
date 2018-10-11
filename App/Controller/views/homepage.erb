@@ -36,6 +36,21 @@
       </form>
     <% end %>
 
+    <% if @user %>
+    <form action="/listed_spaces" method="post">
+    <select name="date">
+      <option value="1">Thursday 25th October</option>
+      <option value="2">Friday 26th October</option>
+      <option value="3">Saturday 27th October</option>
+      <option value="4">Sunday 28th October</option>
+      <option value="5">Monday 29th October</option>
+      <option value="6">Tuesday 30th October</option>
+      <option value="7">Wednesday 31th October</option> 
+    </select>
+      <input type="submit" value="Check date">
+    </form>
+
+    <% end %>
     <div id="space_list">
   
       <% @spaces_list.map do |space|%>
