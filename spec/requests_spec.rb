@@ -39,9 +39,14 @@ describe Requests do
 
   describe '.receive' do
     it 'should return a list of listed properties that have requests' do
+      first_space = Space.create(name: 'patricks', address: 'tester street', price: '100.00', description: 'hole', lister_id: "#{@lister.id}")
+
+      Space.list(first_space.id, @lister.id, 31)
       Space.list(@space.id, @lister.id, 31)
       Requests.book(@space.id, @requester.id, 31)
+
       result = Requests.receive(@lister.id).first
+
       expect(result.lister_id).to eq(@lister.id)
       expect(result.requester_id).to eq(@requester.id)
       expect(result.booker_id).to eq(@lister.id) # remains as the lister while unbooked
@@ -52,6 +57,7 @@ describe Requests do
     it 'should allow us to accept a request' do
       Space.list(@space.id, @lister.id, 31)
       Requests.book(@space.id, @requester.id, 31)
+
       Requests.accept(@space.id, @requester.id, 31)
       result = Requests.list_available(31).first
       expect(result.booker_id).to eq(@requester.id)
@@ -62,7 +68,9 @@ describe Requests do
     it 'should allow us to decline a request' do
       Space.list(@space.id, @lister.id, 31)
       Requests.book(@space.id, @requester.id, 31)
+
       Requests.decline(@space.id, @requester.id, 31)
+
       result = Requests.list_available(31).first
       expect(result.requester_id).not_to eq(@requester.id)
       expect(result.booker_id).not_to eq(@requester.id)

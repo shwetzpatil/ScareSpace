@@ -20,8 +20,9 @@ class Requests
     DatabaseConnection.query("UPDATE availability SET requester_id = '#{requester_id}' WHERE space_id = '#{space_id}' AND date = '#{date}';")
   end
 
-  def self.receive(requester_id)
-    result = DatabaseConnection.all("availability")
+  def self.receive(lister_id)
+    result = DatabaseConnection.query("SELECT * FROM availability WHERE lister_id = '#{lister_id}' AND requester_id IS NOT null;")
+
     result.map { |row| Requests.new(id: row['id'], date: row['date'], space_id: row['space_id'], booker_id: row['booker_id'], lister_id: row['lister_id'], requester_id: row['requester_id']) }
   end
 
@@ -31,6 +32,5 @@ class Requests
 
   def self.decline(space_id, requester_id, date)
     DatabaseConnection.query("UPDATE availability SET requester_id = null WHERE space_id = '#{space_id}' AND date = '#{date}';")
-
   end
 end
