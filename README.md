@@ -25,10 +25,6 @@ User Stories
     * As a listing user, to stop others staying in the space, I would like to be able to deny the request
 * They request to book a space
     * As a booking user, to allow me to stay in a space, I would like to be able to make a booking request.
-* Their request to book a space is confirmed
-    * As a booking user, to allow me to get happy, I would like to receive confirmation when my booking request is agreed.
-* Their request to book a space is denied
-    *  As a booking user, to allow me to get angry, I would like to receive confirmation when my booking request is denied.
 
 https://github.com/racldn
 https://github.com/shwetzpatil
@@ -43,7 +39,7 @@ CREATE DATABASE scarespace;
 \c scarespace
 CREATE TABLE users (id SERIAL PRIMARY KEY, email VARCHAR(60) UNIQUE, password VARCHAR(140));
 CREATE TABLE spaces (id SERIAL PRIMARY KEY, name VARCHAR(60), address VARCHAR(150), price DECIMAL(5,2), description VARCHAR(500), lister_id INTEGER REFERENCES users (id));
-CREATE TABLE availability (id SERIAL PRIMARY KEY, date INTEGER, space_id INTEGER REFERENCES spaces (id), booker_id INTEGER REFERENCES users (id), lister_id INTEGER REFERENCES users (id));
+CREATE TABLE availability (id SERIAL PRIMARY KEY, date INTEGER, space_id INTEGER REFERENCES spaces (id), booker_id INTEGER REFERENCES users (id), lister_id INTEGER REFERENCES users (id), requester_id INTEGER REFERENCES users (id));
 ```
 
 ### To Create A New Branch
