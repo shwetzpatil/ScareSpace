@@ -49,7 +49,7 @@ describe Requests do
   end
 
   describe '.accept' do
-    xit 'should allow us to accept a request' do
+    it 'should allow us to accept a request' do
       Space.list(@space.id, @lister.id, 31)
       Requests.book(@space.id, @requester.id, 31)
       Requests.accept(@space.id, @requester.id, 31)
@@ -59,12 +59,12 @@ describe Requests do
   end
 
   describe '.decline' do
-    xit 'should allow us to decline a request' do
+    it 'should allow us to decline a request' do
       Space.list(@space.id, @lister.id, 31)
       Requests.book(@space.id, @requester.id, 31)
       Requests.decline(@space.id, @requester.id, 31)
       result = Requests.list_available(31).first
-      expect(result.requester_id).not_to eq(@requester.id)
+      expect(result.booker_id).not_to eq(@requester.id)
     end
   end
 end

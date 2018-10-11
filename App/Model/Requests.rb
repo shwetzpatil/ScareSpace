@@ -19,4 +19,18 @@ class Requests
   def self.book(space_id, requester_id, date)
     DatabaseConnection.query("UPDATE availability SET requester_id = '#{requester_id}' WHERE space_id = '#{space_id}' AND date = '#{date}';")
   end
+
+  def self.receive(requester_id)
+    result = DatabaseConnection.all("availability")
+    result.map { |row| Requests.new(id: row['id'], date: row['date'], space_id: row['space_id'], booker_id: row['booker_id'], lister_id: row['lister_id'], requester_id: row['requester_id']) }
+  end
+
+  def self.accept(space_id, requester_id, date)
+    DatabaseConnection.query("UPDATE availability SET booker_id = '#{requester_id}' WHERE space_id = '#{space_id}' AND date = '#{date}';")
+  end
+
+  def self.decline(space_id, requester_id, date)
+    DatabaseConnection.query("UPDATE availability SET requester_id = '#{requester_id}' WHERE space_id = '#{space_id}' AND date = '#{date}';")
+
+  end
 end
