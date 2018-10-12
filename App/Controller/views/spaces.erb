@@ -42,5 +42,37 @@
     <form action="/spaces" method="post">
       <input type="submit" value="Update">
     </form>
+    <% if @space_list %>
+        <div id="created_list">
+  
+      <% @space_list.map do |space|%>
+      <ul id="<%= space.id %>">
+
+        <li>Space name: <%= space.name %></li>
+        <li>Address: <%= space.address%>
+        <li>Price: <%= space.price %>
+        <li>Description: <%= space.description%> </li>
+      
+        <form action="/list_a_space" method="post">
+        <select name="list_date">
+          <option value="1">Thursday 25th October</option>
+          <option value="2">Friday 26th October</option>
+          <option value="3">Saturday 27th October</option>
+          <option value="4">Sunday 28th October</option>
+          <option value="5">Monday 29th October</option>
+          <option value="6">Tuesday 30th October</option>
+          <option value="7">Wednesday 31th October</option> 
+         </select>
+         <input type='hidden' name='space_id' value="<%= space.id %>">
+          <input type="submit" value="List">
+        </form>
+
+        <% end %>
+
+      </ul>
+       
+      <% end %>
+  
+    </div>
   </body>
 </html>

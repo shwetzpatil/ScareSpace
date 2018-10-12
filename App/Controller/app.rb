@@ -25,9 +25,16 @@ class ScareSpace < Sinatra::Base
     erb :signup
   end
 
+  post '/list_a_space' do
+    @user = User.find(id: session[:user_id])
+    Space.list(params[:space_id].to_i, @user.id, params[:list_date].to_i)
+    flash[:notice] = 'Listing successful'
+    redirect '/spaces'
+  end
+
   get '/spaces' do
     @user = User.find(id: session[:user_id])
-
+    @space_list = Space.mine(@user.id)
     erb :spaces
   end
 
